@@ -1,14 +1,37 @@
-// index-script.js
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to initialize Vanta.js fog effect
+  function initVantaFog() {
+    // Check if VANTA and VANTA.RINGS are defined before initializing
+    if (typeof VANTA !== 'undefined' && VANTA.RINGS) {
+      VANTA.RINGS({
+        el: "#events",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        backgroundColor: 0x1e293b,
+        ringColor: 0xff7849,
+        // Dark navy background
+        // Vibrant orange highlight
+        zIndex: 0
+      });
+    } else {
+      console.warn("VANTA or VANTA.RINGS not found. Ensure Vanta.js is loaded.");
+    }
+  }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Add event listener to the document to handle clicks
-    document.addEventListener('click', function(event) {
-        // Check if the clicked element has the class 'event-card'
-        if (event.target.closest('.event-card')) {
-            // Prevent the default action (e.g., following a link)
-            event.preventDefault();
-            // Log a message to the console
-            console.log('Event card clicked');
-        }
-    });
+  // Initialize Vanta.js when the DOM is fully loaded
+  initVantaFog();
+
+  // Reinitialize Vanta.js on window resize (optional)
+  window.addEventListener("resize", function () {
+    // Destroy the existing Vanta instance (if it exists) before reinitializing
+    if (VANTA.current && VANTA.current.destroy) {
+      VANTA.current.destroy();
+    }
+    initVantaFog();
+  });
 });
