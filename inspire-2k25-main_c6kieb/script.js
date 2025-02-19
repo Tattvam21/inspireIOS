@@ -1,5 +1,3 @@
-let headerNet, eventsRings, scheduleBirds, historyBirds, sponsorsRings;
-
 // Get the video elements and the overlay element
 // JavaScript code for handling video and text animations
 const firstVideo = document.getElementById("first-video");
@@ -25,10 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 }); // 1 second delay
 
-const initializeVanta = (element) => {
-  
 
-};
+
+
+  
+ 
 
 function toggleEvents() {
   const techEvents = document.getElementById("tech-events");
@@ -143,7 +142,3 @@ function hideAllEventGrids() {
   document.getElementById("pharmacy-non-tech-events").style.display = "none";
   document.getElementById("department-boxes").style.display = "none";
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  
-});
