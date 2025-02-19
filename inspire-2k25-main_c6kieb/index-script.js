@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
         backgroundColor: 0x1e293b,
         ringColor: 0xff7849,
         showLines: false,
-        // Dark navy background
-        // Vibrant orange highlight
+        
+        forceAnimate: true,
       });
     } else {
       console.warn("VANTA or VANTA.RINGS not found. Ensure Vanta.js is loaded.");
