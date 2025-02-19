@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (typeof VANTA !== 'undefined' && VANTA.RINGS) {
       VANTA.RINGS({
         el: "#events",
-        mouseControls: true,
-        touchControls: true,
+        mouseControls: false,
+        touchControls: false,
         gyroControls: false,
         minHeight: 200.00,
         minWidth: 200.00,
