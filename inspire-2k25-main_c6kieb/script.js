@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   /*** 🌟 STAR ANIMATION FOR EVENTS SECTION WITH TRAILS 🌟 ***/
   const STAR_COLOR = "#fff";
-  const STAR_SIZE = 3;
+  let STAR_SIZE = 3;
   const STAR_MIN_SCALE = 0.2;
   const OVERFLOW_THRESHOLD = 50;
-  const STAR_COUNT = (window.innerWidth + window.innerHeight) / 8;
+  let STAR_COUNT = (window.innerWidth + window.innerHeight) / 8;
 
   const canvas = document.querySelector("#events canvas");
   const context = canvas.getContext("2d");
@@ -20,17 +20,34 @@ document.addEventListener("DOMContentLoaded", function () {
   let velocity = { x: 0, y: 0, tx: 0, ty: 0, z: 0.0005 };
   let touchInput = false;
 
+  // Function to adjust star size based on screen density
+  function adjustStarSize() {
+    if (window.innerWidth <= 768) {
+      // Adjust STAR_SIZE and STAR_COUNT for smaller screens
+      STAR_SIZE = 2; // Smaller star size for mobile
+      STAR_COUNT = (window.innerWidth + window.innerHeight) / 10; // Reduce star count
+    } else {
+      STAR_SIZE = 3; // Default star size for larger screens
+      STAR_COUNT = (window.innerWidth + window.innerHeight) / 8; // Default star count
+    }
+  }
+
   generate();
   resize();
   step();
 
-  window.addEventListener("resize", resize);
+  window.addEventListener("resize", () => {
+    adjustStarSize();
+    resize();
+  });
   window.addEventListener("mousemove", onMouseMove);
   canvas.addEventListener("touchmove", onTouchMove);
   canvas.addEventListener("touchend", onMouseLeave);
   document.addEventListener("mouseleave", onMouseLeave);
 
   function generate() {
+    stars = []; // Clear existing stars
+    adjustStarSize(); // Adjust star size and count
     for (let i = 0; i < STAR_COUNT; i++) {
       stars.push({
         x: Math.random() * width,
@@ -161,6 +178,20 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   console.log("Particle animation with trails loaded successfully!");
+
+  // Gyroscope integration
+  window.addEventListener("deviceorientation", function (event) {
+    let tiltLR = event.gamma; // left-right tilt
+    let tiltFB = event.beta; // front-back tilt
+
+    // Normalize the tilt values
+    let normalizedTiltLR = tiltLR / 90; // Assuming 90 degrees is the maximum tilt
+    let normalizedTiltFB = tiltFB / 90;
+
+    // Apply the tilt to the velocity
+    velocity.tx = normalizedTiltLR * 10; // Adjust the multiplier to control the sensitivity
+    velocity.ty = normalizedTiltFB * 10;
+  }, true);
 });
 
 
