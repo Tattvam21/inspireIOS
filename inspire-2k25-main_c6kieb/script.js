@@ -178,20 +178,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   console.log("Particle animation with trails loaded successfully!");
-
-  // Gyroscope integration
-  window.addEventListener("deviceorientation", function (event) {
-    let tiltLR = event.gamma; // left-right tilt
-    let tiltFB = event.beta; // front-back tilt
-
-    // Normalize the tilt values
-    let normalizedTiltLR = tiltLR / 90; // Assuming 90 degrees is the maximum tilt
-    let normalizedTiltFB = tiltFB / 90;
-
-    // Apply the tilt to the velocity
-    velocity.tx = normalizedTiltLR * 10; // Adjust the multiplier to control the sensitivity
-    velocity.ty = normalizedTiltFB * 10;
-  }, true);
 });
 
 
