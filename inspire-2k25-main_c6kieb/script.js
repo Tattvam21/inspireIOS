@@ -93,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function step() {
+    context.clearRect(0, 0, width, height);
     context.fillStyle = "rgba(0, 0, 0, 0.2)";
     context.fillRect(0, 0, width, height);
     update();
