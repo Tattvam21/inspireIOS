@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (window.innerWidth <= 768) {
       // Adjust STAR_SIZE and STAR_COUNT for smaller screens
       STAR_SIZE = 2; // Smaller star size for mobile
-      STAR_COUNT = (window.innerWidth + window.innerHeight) / 10; // Reduce star count
+      STAR_COUNT = (window.innerWidth + window.innerHeight) / 7; // Reduce star count
     } else {
       STAR_SIZE = 3; // Default star size for larger screens
       STAR_COUNT = (window.innerWidth + window.innerHeight) / 8; // Default star count
@@ -325,6 +325,7 @@ if (window.DeviceOrientationEvent) {
     // Apply the tilt to the events section
     if (eventsSection) {
       eventsSection.style.transform = `rotateX(${tiltFB / 40}deg) rotateY(${tiltLR / 40}deg)`;
+      console.log("Gyroscope is working!");
     }
   }, true);
 } else {
