@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  /*** 🌟 STAR ANIMATION FOR EVENTS SECTION WITH TRAILS 🌟 ***/
+  /*** 🌟 STAR ANIMATION FOR EVENTS SECTION 🌟 ***/
   const STAR_COLOR = "#fff";
   const STAR_SIZE = 3;
   const STAR_MIN_SCALE = 0.2;
@@ -94,8 +94,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function step() {
     context.clearRect(0, 0, width, height);
-    context.fillStyle = "rgba(0, 0, 0, 0.2)";
-    context.fillRect(0, 0, width, height);
     update();
     render();
     requestAnimationFrame(step);
@@ -122,13 +120,10 @@ document.addEventListener("DOMContentLoaded", function () {
   function render() {
     stars.forEach((star) => {
       context.beginPath();
-      context.lineCap = "round";
-      context.lineWidth = STAR_SIZE * star.z * scale;
+      context.arc(star.x, star.y, STAR_SIZE * star.z * scale, 0, Math.PI * 2);
+      context.fillStyle = STAR_COLOR;
       context.globalAlpha = 0.5 + 0.5 * Math.random();
-      context.strokeStyle = STAR_COLOR;
-      context.moveTo(star.x, star.y);
-      context.lineTo(star.x - velocity.x * 2, star.y - velocity.y * 2);
-      context.stroke();
+      context.fill();
     });
   }
 
@@ -137,8 +132,8 @@ document.addEventListener("DOMContentLoaded", function () {
       let ox = x - pointerX,
         oy = y - pointerY;
 
-      velocity.tx += (ox / 5) * (touchInput ? 1 : -1);
-      velocity.ty += (oy / 5) * (touchInput ? 1 : -1);
+      velocity.tx += (ox / 14) * (touchInput ? 1 : -1);
+      velocity.ty += (oy / 14) * (touchInput ? 1 : -1);
     }
     pointerX = x;
     pointerY = y;
@@ -160,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
     pointerY = null;
   }
 
-  console.log("Particle animation with trails loaded successfully!");
+  console.log("Particle animation loaded successfully!");
 });
 
 
@@ -295,21 +290,3 @@ function hideAllEventGrids() {
 
 /*** ✅ FINAL TOUCH: ENSURE SCRIPT IS LOADED ***/
 console.log("JavaScript Loaded Successfully!");
-
-/*** 📱 GYRO EFFECT FOR MOBILE EVENTS SECTION ***/
-const eventsSection = document.getElementById("events");
-
-// Check if the device supports gyroscope
-if (window.DeviceOrientationEvent) {
-  window.addEventListener("deviceorientation", function (event) {
-    const tiltLR = event.gamma;  // left-right tilt
-    const tiltFB = event.beta;   // front-back tilt
-
-    // Apply the tilt to the events section
-    if (eventsSection) {
-      eventsSection.style.transform = `rotateX(${tiltFB / 40}deg) rotateY(${tiltLR / 40}deg)`;
-    }
-  }, true);
-} else {
-  console.warn("Device orientation not supported");
-}
