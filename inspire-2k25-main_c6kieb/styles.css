@@ -281,7 +281,7 @@ body {
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  border-radius: 6px; /* Slightly less rounded buttons */
+  border-radius: 6px; /* Slightly rounded buttons */
   transition: all 0.3s ease;
   border: 2px solid transparent; /* Add border for hover effect */
 }
@@ -496,6 +496,9 @@ body {
     grid-template-columns: 1fr; /* Single column on mobile */
     padding: 10px; /* Reduced padding on mobile */
   }
+
+  
+ 
 }
 
 .event-card {
@@ -571,6 +574,7 @@ body {
 
 /* Schedule Section */
 .schedule-section {
+
   min-height: 90vh;
   display: flex;
   flex-direction: column;
@@ -583,7 +587,7 @@ body {
 
 .schedule-section h2 {
   font-size: 3em;
-  color: #ff7849; /* Vibrant orange heading */
+  color: #ff7849;/* Vibrant orange heading */
   margin-bottom: 30px;
   text-align: center;
   transition: color 0.3s;
@@ -1150,4 +1154,26 @@ canvas {
   width: 100%;
   height: 100%;
   z-index: -1;
+}
+/* Ensure the canvas covers the entire viewport */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Make sure the events section also covers the full height */
+.events {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure the content within events is properly positioned */
+.events > * {
+  position: relative;
+  z-index: 1;
 }
