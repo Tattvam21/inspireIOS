@@ -47,8 +47,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const tiltY = event.gamma; // Gamma: Rotation around the Y axis (-90 to 90 degrees)
 
     // Adjust velocity based on tilt
-    velocity.tx = tiltY / 10; // Reduced sensitivity
-    velocity.ty = tiltX / 10; // Reduced sensitivity
+    velocity.tx = tiltY / 4; // Reduced sensitivity
+    velocity.ty = tiltX / 4; // Reduced sensitivity
   });
 
   window.addEventListener("mousemove", onMouseMove);
@@ -169,8 +169,8 @@ document.addEventListener("DOMContentLoaded", function () {
       let ox = x - pointerX,
         oy = y - pointerY;
 
-      velocity.tx += (ox / 5) * (touchInput ? 1 : -1);
-      velocity.ty += (oy / 5) * (touchInput ? 1 : -1);
+      velocity.tx += (ox / 10) * (touchInput ? 1 : -1);
+      velocity.ty += (oy / 10) * (touchInput ? 1 : -1);
     }
     pointerX = x;
     pointerY = y;
