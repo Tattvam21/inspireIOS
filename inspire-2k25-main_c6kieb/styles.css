@@ -26,6 +26,7 @@
   justify-content: center; /* Center items horizontally inside navbar_menu */
   max-width: 1200px; /* Limit navbar width */
   width: 100%; /* Take full width within max-width */
+  
 }
 
 @media (min-width: 769px) {
@@ -424,17 +425,31 @@ body {
 
 /* Events Section */
 .events {
-  min-height: 90vh; /* Slightly reduced height */
+  position: relative;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 60px 20px; /* Increased padding */
+  padding: 60px 20px;
   box-sizing: border-box;
-  background-color: transparent; /* Dark navy background */
-  position: relative; /* Add relative positioning */
-  overflow: hidden; /* Hide overflow content */
+  background-color: #000;
+  background-image: radial-gradient(circle at top right, rgba(121, 68, 154, 0.13), transparent),
+    radial-gradient(circle at 20% 80%, rgba(41, 196, 255, 0.13), transparent);
+  overflow: hidden;
 }
+
+.events canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Ensure it's not behind other elements */
+  opacity: 1; /* Make sure it's fully visible */
+  pointer-events: none; /* Prevent interference */
+}
+
 
 .events::before {
   content: "";
@@ -1125,5 +1140,14 @@ body {
   width: 100%;
   height: 100%;
   background: #1e293b;
+  z-index: -1;
+}
+
+
+
+canvas {
+  position: fixed;
+  width: 100%;
+  height: 100%;
   z-index: -1;
 }
