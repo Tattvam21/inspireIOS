@@ -40,6 +40,17 @@ document.addEventListener("DOMContentLoaded", function () {
     adjustStarSize();
     resize();
   });
+
+  // Gyroscope implementation
+  window.addEventListener("deviceorientation", function (event) {
+    const tiltX = event.beta;  // Beta: Rotation around the X axis (-180 to 180 degrees)
+    const tiltY = event.gamma; // Gamma: Rotation around the Y axis (-90 to 90 degrees)
+
+    // Adjust velocity based on tilt
+    velocity.tx = tiltY / 10; // Reduced sensitivity
+    velocity.ty = tiltX / 10; // Reduced sensitivity
+  });
+
   window.addEventListener("mousemove", onMouseMove);
   canvas.addEventListener("touchmove", onTouchMove);
   canvas.addEventListener("touchend", onMouseLeave);
@@ -105,6 +116,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     canvas.width = width;
     canvas.height = height;
+
+    // Ensure canvas is properly sized
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
 
     stars.forEach(placeStar);
   }
