@@ -312,22 +312,3 @@ function hideAllEventGrids() {
 
 /*** ✅ FINAL TOUCH: ENSURE SCRIPT IS LOADED ***/
 console.log("JavaScript Loaded Successfully!");
-
-/*** 📱 GYRO EFFECT FOR MOBILE EVENTS SECTION ***/
-const eventsSection = document.getElementById("events");
-
-// Check if the device supports gyroscope
-if (window.DeviceOrientationEvent) {
-  window.addEventListener("deviceorientation", function (event) {
-    const tiltLR = event.gamma;  // left-right tilt
-    const tiltFB = event.beta;   // front-back tilt
-
-    // Apply the tilt to the events section
-    if (eventsSection) {
-      eventsSection.style.transform = `rotateX(${tiltFB / 40}deg) rotateY(${tiltLR / 40}deg)`;
-      console.log("Gyroscope is working!");
-    }
-  }, true);
-} else {
-  console.warn("Device orientation not supported");
-}
